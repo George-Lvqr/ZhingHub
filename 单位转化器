@@ -1,0 +1,203 @@
+using System;
+
+namespace UnitConverter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("欢迎使用单位转换器！");
+
+            while (true)
+            {
+                Console.WriteLine("请选择要转换的类型（时间/长度/重量）：");
+                string type = Console.ReadLine();
+
+                switch (type)
+                {
+                    case "时间":
+                        ConvertTime();
+                        break;
+                    case "长度":
+                        ConvertLength();
+                        break;
+                    case "重量":
+                        ConvertWeight();
+                        break;
+                    default:
+                        Console.WriteLine("无效的类型，请重新选择。");
+                        break;
+                }
+
+                Console.WriteLine("是否继续转换？（是/否）");
+                string continueOption = Console.ReadLine();
+
+                if (continueOption.ToLower() == "否")
+                {
+                    break;
+                }
+            }
+
+            Console.WriteLine("感谢使用单位转换器，再见！");
+        }
+
+        static void ConvertTime()
+        {
+            Console.WriteLine("请选择要转换的时间单位（秒/分钟/小时）：");
+            string fromUnit = Console.ReadLine();
+
+            Console.WriteLine("请输入要转换的值：");
+            double value = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("请选择要转换成的时间单位（秒/分钟/小时）：");
+            string toUnit = Console.ReadLine();
+
+            double result = 0;
+
+            switch (fromUnit)
+            {
+                case "秒":
+                    switch (toUnit)
+                    {
+                        case "分钟":
+                            result = value / 60;
+                            break;
+                        case "小时":
+                            result = value / 3600;
+                            break;
+                    }
+                    break;
+                case "分钟":
+                    switch (toUnit)
+                    {
+                        case "秒":
+                            result = value * 60;
+                            break;
+                        case "小时":
+                            result = value / 60;
+                            break;
+                    }
+                    break;
+                case "小时":
+                    switch (toUnit)
+                    {
+                        case "秒":
+                            result = value * 3600;
+                            break;
+                        case "分钟":
+                            result = value * 60;
+                            break;
+                    }
+                    break;
+            }
+
+            Console.WriteLine($"转换结果：{result}");
+        }
+
+        static void ConvertLength()
+        {
+            Console.WriteLine("请选择要转换的长度单位（米/英寸/厘米）：");
+            string fromUnit = Console.ReadLine();
+
+            Console.WriteLine("请输入要转换的值：");
+            double value = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("请选择要转换成的长度单位（米/英寸/厘米）：");
+            string toUnit = Console.ReadLine();
+
+            double result = 0;
+
+            switch (fromUnit)
+            {
+                case "米":
+                    switch (toUnit)
+                    {
+                        case "英寸":
+                            result = value * 39.37;
+                            break;
+                        case "厘米":
+                            result = value * 100;
+                            break;
+                    }
+                    break;
+                case "英寸":
+                    switch (toUnit)
+                    {
+                        case "米":
+                            result = value / 39.37;
+                            break;
+                        case "厘米":
+                            result = value * 2.54;
+                            break;
+                    }
+                    break;
+                case "厘米":
+                    switch (toUnit)
+                    {
+                        case "米":
+                            result = value / 100;
+                            break;
+                        case "英寸":
+                            result = value / 2.54;
+                            break;
+                    }
+                    break;
+            }
+
+            Console.WriteLine($"转换结果：{result}");
+        }
+
+        static void ConvertWeight()
+        {
+            Console.WriteLine("请选择要转换的重量单位（千克/磅/克）：");
+            string fromUnit = Console.ReadLine();
+
+            Console.WriteLine("请输入要转换的值：");
+            double value = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("请选择要转换成的重量单位（千克/磅/克）：");
+            string toUnit = Console.ReadLine();
+
+            double result = 0;
+
+            switch (fromUnit)
+            {
+                case "千克":
+                    switch (toUnit)
+                    {
+                        case "磅":
+                            result = value * 2.20462;
+                            break;
+                        case "克":
+                            result = value * 1000;
+                            break;
+                    }
+                    break;
+                case "磅":
+                    switch (toUnit)
+                    {
+                        case "千克":
+                            result = value / 2.20462;
+                            break;
+                        case "克":
+                            result = value * 453.592;
+                            break;
+                    }
+                    break;
+                case "克":
+                    switch (toUnit)
+                    {
+                        case "千克":
+                            result = value / 1000;
+                            break;
+                        case "磅":
+                            result = value / 453.592;
+                            break;
+                    }
+                    break;
+            }
+
+            Console.WriteLine($"转换结果：{result}");
+        }
+    }
+}
